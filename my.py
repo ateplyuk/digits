@@ -3,8 +3,6 @@ import numpy as np
 from PIL import Image, ImageDraw
 import pytesseract
 
-#pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
-
 uploaded_file = st.file_uploader("Загрузите документ...")
 
 def imgGen2(img1): 
@@ -19,21 +17,19 @@ def imgGen2(img1):
    for x in dbox.split('\n'):
      ch = x.split(' ')
      if ch[0].isdigit():
-       crd.append(ch[1:5])
+       crd.append(list(map(int,ch[1:5])))
         
    w,h = img.size
    draw = ImageDraw.Draw(img)
    
    for c in crd:
-     draw.rectangle([(int(c[0]),h-int(c[1])),(int(c[2]),h-int(c[3]))], fill='red',width=2)
+     draw.rectangle([(c[0],h-c[1]),(c[2],h-c[3])], fill='white')
   
    return img
 
-if uploaded_file is not None:
-    #src_image = load_image(uploaded_file)
+if uploaded_file is not None:    
     image = Image.open(uploaded_file)	
 	
-    st.image(uploaded_file, caption='Input Image', use_column_width=True)
-    #st.write(os.listdir())
+    st.image(uploaded_file, caption='Input Image', use_column_width=True)    
     im = imgGen2(uploaded_file)	
-    st.image(im, caption='ASCII art', use_column_width=True)
+    st.image(im, caption='тестовая версия', use_column_width=True)
