@@ -3,9 +3,9 @@ import numpy as np
 from PIL import Image, ImageDraw
 import pytesseract
 
-pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+#pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
-uploaded_file = st.file_uploader("Choose an image...")
+uploaded_file = st.file_uploader("Загрузите документ...")
 
 def imgGen2(img1): 
    img = Image.open(img1)
